@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using c_sharp_og_SQL.SQcon;
+﻿using c_sharp_og_SQL.SQcon;
 
 
 namespace c_sharp_og_SQL.kunder
@@ -14,9 +9,9 @@ namespace c_sharp_og_SQL.kunder
 
         public string Fnavn { get; set; }
 
-        public string  Enavn { get; set; }
+        public string Enavn { get; set; }
 
-        public int Alder  { get; set; }
+        public int Alder { get; set; }
 
         public int Mobilnummer { get; set; }
 
@@ -37,7 +32,33 @@ namespace c_sharp_og_SQL.kunder
             Mobilnummer = nummer;
             Mail = mail;
 
-            
+
         }
+     
+        
+        public static void UpdateFNavn(int id, string fnavn)
+        {
+            SQL.Update("kunder", $"Fnavn = '{fnavn}'", $"Kundeid = {id}");
+        }
+        public static void UpdateENavn(int id, string eNavn)
+        {
+            SQL.Update("kunder", $"Enavn = '{eNavn}'", $"Kundeid = {id}");
+        }
+        public static void UpdateAlder(int id, int alder)
+        {
+            SQL.Update("kunder", $"Alder = {alder}", $"Kundeid = {id}");
+        }
+        public static void UpdateNummer(int id, int nummer)
+        {
+            SQL.Update("kunder", $"Mobilnummer = {nummer}", $"Kundeid = {id}");
+        }
+        public static void UpdateMail(int id, string mail)
+        {
+            SQL.Update("kunder", $"Email = '{mail}'", $"Kundeid = {id}");
+        }
+
+
+
+
     }
 }

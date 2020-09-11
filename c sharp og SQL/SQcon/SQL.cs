@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Data;
 
 namespace c_sharp_og_SQL.SQcon
 {
@@ -37,6 +32,57 @@ namespace c_sharp_og_SQL.SQcon
                 SqlCommand cmd = new SqlCommand(sql, con);
                 cmd.ExecuteNonQuery();
             }
+
+        }
+
+
+        public static void DataReader()
+        {
+            Console.WriteLine("");
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("Select * from Kunder", con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                //Er der rækker?
+                Console.WriteLine(reader.HasRows);
+
+                while (reader.Read())
+                {
+                    int Kundeid = reader.GetInt32(0);
+                    string Fnavn = reader.GetString(1);
+                    string Enavn = reader.GetString(2);
+                    int Alder = reader.GetInt32(3);
+                    int Mobilnummer = reader.GetInt32(4);
+                    string Email = reader.GetString(5);
+                    Console.WriteLine($"Id: {Kundeid} navn:    {Fnavn} adresse:    {Enavn} - alder:    {Alder}  Mobilnummer:    {Mobilnummer} Email:    {Email}");
+                }
+
+            }
+        }
+
+        public static void Update(string table, string setString, string conditionString)
+        {
+            Console.WriteLine("du opdatere nu dit data");
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand($"USE Biograf UPDATE {table} SET {setString} WHERE {conditionString}", con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                //Er der rækker?
+                Console.WriteLine(reader.HasRows);
+
+
+            }
+
         }
     }
+
+    //public static void Deleteuser()
+    
+
+
+
 }
