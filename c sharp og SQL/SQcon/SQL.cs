@@ -78,9 +78,27 @@ namespace c_sharp_og_SQL.SQcon
             }
 
         }
+
+        public static void Deleteuser(int Kundeid)
+        {
+
+            Console.WriteLine("du sletter nu din bruger");
+            using (SqlConnection con = new SqlConnection(ConnectionString))
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand($"DELETE FROM Kunder WHERE Kundeid='{Kundeid}' ", con);
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                //Er der rækker?
+                Console.WriteLine(reader.HasRows);
+            }
+        }
     }
 
-    //public static void Deleteuser()
+
+    
+
+    
     
 
 

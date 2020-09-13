@@ -98,10 +98,6 @@ namespace c_sharp_og_SQL
                                         System.Console.WriteLine("Mail opdateret");
                                         Console.ReadKey(true);
 
-
-
-
-
                                         break;
                                     case ConsoleKey.Escape:
                                         editExit = true;
@@ -112,10 +108,6 @@ namespace c_sharp_og_SQL
                             } while (!editExit);
 
                             
-
-
-
-
                         break;
 
                     case ConsoleKey.C:
@@ -127,6 +119,11 @@ namespace c_sharp_og_SQL
                         break;
                     case ConsoleKey.D:
                         Console.WriteLine("Indtast ID på den bruger der skal slettes");
+                            
+                            SQL.Deleteuser(Convert.ToInt32(Console.ReadLine()));
+                            Console.Clear();
+                            Console.WriteLine("du er nu slttet");
+
                         break;
                     case ConsoleKey.E:
                         exit = true;
